@@ -1,26 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Sample data to simulate bus information
-data = {
-    "Starting_names": ["Ongole"] * 7,
-    "Reaching_names": ["Hyderabad"] * 7,
-    "Names": ["Sri Krish", "VV Vinay", "Sri Lakshmi", "Sri Krish", "Cherry", "SAI PRAS", "Sri Laxmi"],
-    "Bus_fare": [450, 500, 475, 1000, 437, 450, 499],
-    "Ratings": [3.5, 3.6, 3.7, 3.4, 3.5, 3.3, 3.7],
-    "Seats": ["11 Seats available", "15 Seats available", "13 Seats available", "16 Seats available", 
-              "24 Seats available", "13 Seats available", "29 Seats available"],
-    "Bus_types": ["Non A/C Seater / Sleeper"] * 6 + ["Volvo Multi-Axle"]
-}
-
-df = pd.DataFrame(data)
-
-
-
-
-
-
-
 # Custom CSS to change font size of the title
 st.markdown(
     """
@@ -144,4 +124,4 @@ st.markdown("""
 # Create the button
 if st.button('Click Me'):
     st.write("### Available Buses")
-    st.dataframe(df)
+    
