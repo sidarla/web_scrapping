@@ -1,0 +1,147 @@
+import streamlit as st
+import pandas as pd
+
+# Sample data to simulate bus information
+data = {
+    "Starting_names": ["Ongole"] * 7,
+    "Reaching_names": ["Hyderabad"] * 7,
+    "Names": ["Sri Krish", "VV Vinay", "Sri Lakshmi", "Sri Krish", "Cherry", "SAI PRAS", "Sri Laxmi"],
+    "Bus_fare": [450, 500, 475, 1000, 437, 450, 499],
+    "Ratings": [3.5, 3.6, 3.7, 3.4, 3.5, 3.3, 3.7],
+    "Seats": ["11 Seats available", "15 Seats available", "13 Seats available", "16 Seats available", 
+              "24 Seats available", "13 Seats available", "29 Seats available"],
+    "Bus_types": ["Non A/C Seater / Sleeper"] * 6 + ["Volvo Multi-Axle"]
+}
+
+df = pd.DataFrame(data)
+
+
+
+
+
+
+
+# Custom CSS to change font size of the title
+st.markdown(
+    """
+    <style>
+    .big-font {
+        font-size:50px !important;
+        font-weight: bold;
+        color: #fff; 
+        font-family:'bree serif';
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Using custom class in markdown to change title font size
+st.sidebar.markdown('<p class="big-font">Welcome to Red Bus</p>', unsafe_allow_html=True)
+
+
+
+st.markdown(
+    """
+    <style>
+    .big-font {
+        font-size:25px !important;
+        font-weight: bolder;
+        color: #fff; 
+        font-family:'Monoton';
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Using custom class in markdown to change title font size
+st.sidebar.markdown('<p class="big-font">Home</p>', unsafe_allow_html=True)
+Select_state=st.sidebar.selectbox("# Select the State",["Telanagana","Haryana","Kerala","Tamil nadu","Punjab",""],index=5)
+if st.sidebar.button("Submit State"):
+    st.write(f"You selected the Bus is: {Select_state}")
+st.markdown(
+    """
+    <style>
+    /* Change background color of the sidebar */
+    [data-testid="stSidebar"] {
+        background-color:#e3093c;
+        color:#fff;
+    }
+    
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# Main Page
+
+
+st.markdown(
+    """
+    <style>
+    .custom-title {
+        color: #e3093c;  /* Red color */
+        font-size: 40px;
+        font-family: 'playfair display';
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(f'<h1 class="custom-title">{Select_state} Bus Booking System</h1>', unsafe_allow_html=True)
+
+# Select Route
+route = st.selectbox("Select the Route", ["Ongole to Hyderabad"])
+
+# Select Seat Type
+seat_type = st.selectbox("Select the Seat Type", ["Sleeper", "Seater"])
+
+# Select AC Type
+ac_type = st.selectbox("Select the AC Type", ["A/C", "Non A/C"])
+
+# Select Ratings
+rating_filter = st.selectbox("Select the Ratings", ["2 to 3","3 to 4", "4 to 5"])
+
+# Starting Time Filter
+time_filter = st.selectbox("Starting time", ["22:00 - 23:00", "23:00 - 00:00"])
+
+# Bus Fare Range
+fare_range = st.selectbox("Bus Fare Range", ["others", "300-500", "500-1000"])
+
+
+
+
+
+
+# Inject custom CSS for button styling
+st.markdown("""
+    <style>
+    div.stButton > button {
+        background-color: #e0073a; /* Green background */
+        color: white;             /* White text */
+        padding: 10px 24px;       /* Add padding */
+        text-align: center;       /* Center the text */
+        text-decoration: none;    /* Remove underline */
+        display: inline-block;    /* Make it inline */
+        font-size: 16px;          /* Font size */
+        margin: 4px 2px;          /* Add some margin */
+        cursor: pointer;          /* Cursor on hover */
+        border-radius: 12px;
+        border-width:2px;
+        border-color:#fff;      /* Rounded corners */
+    }
+
+    div.stButton > button:hover {
+        background-color: #fff;
+        color:#000; /* Darker shade of green on hover */
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+# Create the button
+if st.button('Click Me'):
+    st.write("### Available Buses")
+    st.dataframe(df)
